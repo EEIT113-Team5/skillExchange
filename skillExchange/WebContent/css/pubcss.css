@@ -1,0 +1,84 @@
+* {
+  vertical-align: middle;
+  font-family: 微軟正黑體;
+}
+.resume {
+  width: 1000px;
+  height: 780px;
+  margin-left: 0px;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+  font-size: 12px;
+  letter-spacing: 1px;
+  box-shadow: 10px 10px 30px #0b1c4f;
+}
+.publishleft,
+.publishright {
+  border: solid 1px;
+  display: inline-block;
+  height: 735px;
+  margin-top: 0px;
+  box-sizing: border-size;
+  float: left;
+}
+.publishleft {
+  width: 35%;
+  height: 780px;
+  background-color: #97dae4;
+  padding-top: 40px;
+  margin-bottom: ;
+  line-height: 20px;
+  border: hidden;
+}
+.imformation {
+  line-height: 20px;
+  padding: 10px;
+  border: hidden;
+}
+.publishright {
+  width: 63.5%;
+  line-height: 20px;
+  padding-top: 45px;
+  padding-left: 5px;
+  border: hidden;
+}
+.pubtitle,
+.imformation,
+.icon {
+  line-height: px;
+  padding-left: 30px;
+  border: hidde;
+}
+
+.pubtitle {
+  fone-size: 35px;
+  font-weight: 700;
+  padding: 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+hr {
+  width: 70%;
+}
+.publishright h3 {
+  padding-left: 15px;
+  color: #264052;
+}
+.publishright p {
+  font-size: 22px;
+  font-weight: 500;
+  height: 10px;
+  border: hidden;
+  padding-left: 20px;
+  color: #000000;
+}
+.publishleft b{
+	font-size: 22px;
+}
+hr {
+  background-color: #1d99c4;
+}
