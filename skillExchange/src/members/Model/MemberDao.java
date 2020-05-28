@@ -84,6 +84,13 @@ public class MemberDao {
 	}
 		
 	
+	
+	public void updateMember(MemberBean mbean) {
+		if (mbean != null && mbean.getMemberAcc() != null) 	{
+			Session session = getSession();
+			session.saveOrUpdate(mbean);
+		}
+	}
 }
 
 

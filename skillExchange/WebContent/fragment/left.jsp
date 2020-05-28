@@ -6,6 +6,16 @@
 <!DOCTYPE html>
 <c:set var='jspPath' value='${pageContext.request.contextPath}' />
 <head>
+<style>
+
+.collectImg{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+</style>
 </head>
 
 
@@ -28,7 +38,7 @@
 
 				<!-- 登出按鈕 -->
 				<c:if test="${ ! empty memberBean}">
-					<%-- 				<img src="${memberBean.memberPic}" /> --%>
+								<img class="collectImg" src="${ memberBean.memberPic }" />
 					<a href="<c:url value='Logout' />"><button type="button"
 							class="btn btn-info">登出</button> </a>
 				</c:if>
