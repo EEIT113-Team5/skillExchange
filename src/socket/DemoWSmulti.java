@@ -20,8 +20,8 @@ public class DemoWSmulti {
 	private static final Set<Session> connectedSessions = Collections.synchronizedSet(new HashSet<>());
 
 	@OnOpen
-	public void onOpen(Session userSession ) throws IOException {
-		connectedSessions.add(userSession); //client連線時將連線session放入set內儲存
+	public void onOpen(Session userSession) throws IOException {
+		connectedSessions.add(userSession); // client連線時將連線session放入set內儲存
 		String text = String.format("Session ID = %s, connected;", userSession.getId());
 
 		System.out.println(text);
@@ -29,26 +29,23 @@ public class DemoWSmulti {
 
 	@OnMessage
 	public void onMessage(Session userSession, String message) {
-   //收到訊息時 message
-   //在此可以做分流比如說room number
-        String msg = null;
+		// 收到訊息時 message
+		// 在此可以做分流比如說room number
+		String msg = null;
 		for (Session session1 : connectedSessions) {
 			if (session1.isOpen()) {
-				if(session1.equals(userSession)) {
-					msg="<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>"+message+"<span class='msg_time_send'><!-- 時間 --></span></div><div class='img_cont_msg'><img src='images/suda.jpeg' class='rounded-circle user_img_msg'></div></div>";
-				} else {
-					msg="<div class='d-flex justify-content-start mb-4'><div class='img_cont_msg'><img src='images/nemotsukensi.jpg' class='rounded-circle user_img_msg'></div><div class='msg_cotainer'>"+message+"<span class='msg_time'><!-- 時間 --></span></div></div>";
+				session1.getAsyncRemote().sendText(message);
+				if (session1.equals(userSession)) {
+
 				}
 
 			}
-			session1.getAsyncRemote().sendText(msg); //送訊息回client
+			// 送訊息回client
 		}
-	
-	
 
-		System.out.println("Session ID ="+userSession.getId()+" ,Message received:" + message);
+		System.out.println("Session ID =" + userSession.getId() + " ,Message received:" + message);
 	}
-    
+
 	@OnClose
 	public void onClose(Session userSession, CloseReason reason) {
 		connectedSessions.remove(userSession);

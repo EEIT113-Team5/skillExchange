@@ -57,6 +57,7 @@ public class LoginCheckFilter implements Filter {
 		url.add("/SelectActivity");
 		url.add("/SelectActivityNo");
 		url.add("/Facebooklogin");
+
 		
 //		url.add("/login.do");
 //		url.add("/login.jsp");

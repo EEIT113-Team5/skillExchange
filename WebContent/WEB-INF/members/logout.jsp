@@ -106,14 +106,14 @@
 		<c:set target='${logoutBean}' property='session'
 			value='${pageContext.session}' />
 
-		${ logoutBean.logout }
+
 	</div>
 
 	<img src="img/logout.png" class='resize' />
 
-<!-- ---------------------要加的部份-------------------- -->
+	<!-- ---------------------要加的部份-------------------- -->
 	<jsp:include page="/fragment/bottom.jsp" />
-<!-- ---------------------要加的部份-------------------- -->
+	<!-- ---------------------要加的部份-------------------- -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -160,6 +160,6 @@
 	<script src="jstemp/script.js"></script>
 
 	<!-- ---------------------要加的部份-------------------- -->
-	
+	${ logoutBean.logout }
 </body>
 </html>

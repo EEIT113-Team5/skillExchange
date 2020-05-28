@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 		httpSession = request.getSession();
 		httpSession.removeAttribute("memberBean");
 		sessionStatus.setComplete(); // 因為@SessionAttributes跟HttpSession不同,所以用2種不同方式清除session
-
+//		httpSession = request.getSession();
 		return "members/logout";
 	}
 

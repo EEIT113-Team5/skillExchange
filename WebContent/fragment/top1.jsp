@@ -27,6 +27,18 @@
 .navigation .navbar-light .navbar-nav .nav-item .nav-link {
 	padding: 20px 13px !important;
 }
+
+#popupmsg {
+	position: fixed;
+	width: 300px;
+	height: 100px;
+	bottom: 50px;
+	right: 30px;
+	border-radius: 5px;
+	background-color: #E0E0E0;
+	display: none;
+	z-index: 10;
+}
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap"
@@ -174,6 +186,106 @@
 		<!-- /main nav -->
 	</div>
 </header>
+
+<div id="popupmsg">
+	<div class="card">
+		<div class="card-header" style="background-color: #FFBFFF">你有一則新的推播訊息</div>
+		<div class="card-body" style="background-color: #FFE6FF">
+			<h5 class="card-title" id="broadcast">Special title treatment</h5>
+		</div>
+	</div>
+</div>
+
+<script>
+	var MyPoint = "/DemoWSmulti";
+	var host = window.location.host;
+	//		console.log(host);
+	var path = window.location.pathname;
+	//		console.log(path);
+	var webCtx = path.substring(0, path.indexOf('/', 1));
+	//		console.log(webCtx);
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+	//		console.log(endPointURL);
+	// 		var statusOutput = document.getElementById("statusOutput");
+	var webSocket;
+
+	var broadcast = document.getElementById("broadcast");
+	var popupmsg = document.getElementById("popupmsg");
+
+	connect();
+	function connect() {
+		// 			document.getElementById("catalog").style.display = 'block';
+		// 			output = document.getElementById("output");
+		// create a websocket
+		webSocket = new WebSocket(endPointURL);
+
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+
+		webSocket.onclose = function(event) {
+			onClose(event)
+		};
+		webSocket.onerror = function(event) {
+			onError(event)
+		};
+	}
+
+	function fadeaway() {
+		$("#popupmsg").fadeOut(2000);
+	}
+	function onOpen(evt) { //連線時觸發
+		console.log("產生連線");
+		// 			writeToScreen("<p style='background-color:#ddd' class='rounded-lg text-center text-secondary py-2'>向對方打個招呼吧</p>");
+
+	}
+	function onMessage(evt) { //收到訊息時觸發
+		// 		broadcast.innerHTML = evt.data;
+		$("#navbarbell").attr("class", "fa fa-bell-o")
+		$("#popupmsg").fadeIn(3000);
+		$("#broadcast").text(evt.data)
+		setTimeout(fadeaway, 5000);
+		// 	    alert(evt.data);
+	}
+	function onClose(evt) { //關閉連線時時觸發
+		//	 		writeToScreen("DISCONNECTED");
+	}
+
+	function onError(evt) {
+		// 			writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+	}
+
+	// 		function sendMessage() {
+
+	// 			var inputMessage = document.getElementById("textmssg");
+	// 			var message = inputMessage.value.trim();
+
+	// 			if (message === "") {
+	// 				alert("Input a message");
+	// 				inputMessage.focus();
+	// 			} else {
+	// 				// 			writeToScreen("SENT: " + message);
+	// 				webSocket.send(message); //!!!! 送留言到endpoint
+	// 				inputMessage.value = "";
+	// 				inputMessage.focus();
+	// 			}
+	// 		}
+
+	function disconnect() {
+		webSocket.close();
+	}
+
+	// 		var cardbody = document.getElementById("cardbody");
+	// 		function writeToScreen(message) {
+	// 			console.log(message)
+	// 			cardbody.innerHTML += message;
+	// 		}
+</script>
+
 
 
 
